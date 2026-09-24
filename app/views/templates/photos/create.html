@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رفع صورة جديدة - تطبيق الذكريات</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <!-- شريط تنقل بسيط للعودة -->
+    <nav class="navbar navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">العودة للمعرض</a>
+            <span class="navbar-text text-light">
+                مرحباً، {{ session.get('first_name') }}
+            </span>
+        </div>
+    </nav>
+
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">شارك ذكرى جديدة</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        
+                        {% if error %}
+                        <div class="alert alert-danger">{{ error }}</div>
+                        {% endif %}
+
+                        <!-- إضافة enctype ضرورية جداً لرفع الملفات -->
+                        <form action="/photo/store" method="POST" enctype="multipart/form-data">
+                            
+                            <div class="mb-4">
+                                <label for="file" class="form-label">اختر صورة من جهازك</label>
+                                <!-- قبول الصور فقط عبر HTML5 -->
+                                <input class="form-control" type="file" id="file" name="file" accept="image/*" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="title" class="form-label">عنوان الصورة</label>
+                                <input type="text" class="form-control" id="title" name="title" maxlength="200" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="description" class="form-label">وصف أو قصة الصورة (اختياري)</label>
+                                <textarea class="form-control" id="description" name="description" rows="4"></textarea>
+                            </div>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a href="/" class="btn btn-secondary me-md-2">إلغاء</a>
+                                <button type="submit" class="btn btn-success">رفع الصورة</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

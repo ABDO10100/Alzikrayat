@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب جديد - تطبيق الذكريات</title>
+    <!-- استدعاء إطار Bootstrap لتصميم متجاوب -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white text-center py-3">
+                        <h4 class="mb-0">إنشاء حساب جديد</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        
+                        <!-- عرض رسائل الخطأ (مثل تكرار الإيميل) -->
+                        {% if error %}
+                        <div class="alert alert-danger text-center">{{ error }}</div>
+                        {% endif %}
+
+                        <!-- نموذج التسجيل -->
+                        <form action="/register" method="POST">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="first_name" class="form-label">الاسم الأول</label>
+                                    <!-- التحقق عبر HTML5: مطلوب، وحد أقصى 50 حرفاً -->
+                                    <input type="text" class="form-control" id="first_name" name="first_name" maxlength="50" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="last_name" class="form-label">الاسم الأخير</label>
+                                    <input type="text" class="form-control" id="last_name" name="last_name" maxlength="50" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="email" class="form-label">البريد الإلكتروني</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                                <div class="form-text">لن نقوم بمشاركة بريدك الإلكتروني مع أي جهة أخرى.</div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="password" class="form-label">كلمة المرور</label>
+                                <input type="password" class="form-control" id="password" name="password" minlength="6" required>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">تسجيل الحساب</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center py-3 bg-white">
+                        <small class="text-muted">لديك حساب بالفعل؟ <a href="/login" class="text-decoration-none">سجل دخولك هنا</a></small>
+                    </div>
+                </div>
+                
+                <!-- زر العودة للصفحة الرئيسية -->
+                <div class="text-center mt-3">
+                    <a href="/" class="text-decoration-none text-secondary">العودة للصفحة الرئيسية</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
