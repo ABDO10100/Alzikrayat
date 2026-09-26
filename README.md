@@ -23,5 +23,5 @@
    `python3 run.py`
 5. تصفح التطبيق عبر الرابط: `http://127.0.0.1:5000`
 
-# Student Name
+# Programer Name
 Abd Alwhab Mohammed Saeed
